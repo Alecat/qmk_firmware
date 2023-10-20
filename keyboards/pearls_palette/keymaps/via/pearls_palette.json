@@ -14,7 +14,7 @@
                 "label": "Layer Indicator Brightness",
                 "type": "range",
                 "options": [0, 255],
-                "content": ["id_layer_indicator_brightness", 0, 16]
+                "content": ["id_layer_indicator_brightness", 0, 3]
               },
               {
                 "label": "Brightness",
@@ -25,62 +25,62 @@
               {
                 "label": "Key 1 Color",
                 "type": "color",
-                "content": ["id_matrix_01_color", 0, 4]
+                "content": ["id_matrix_color[1]", 0, 2, 1]
               },
               {
                 "label": "Key 2 Color",
                 "type": "color",
-                "content": ["id_matrix_02_color", 0, 5]
+                "content": ["id_matrix_color[2]", 0, 2, 2]
               },
               {
                 "label": "Key 3 Color",
                 "type": "color",
-                "content": ["id_matrix_03_color", 0, 6]
+                "content": ["id_matrix_color[3]", 0, 2, 3]
               },
               {
                 "label": "Key 4 Color",
                 "type": "color",
-                "content": ["id_matrix_04_color", 0, 7]
+                "content": ["id_matrix_color[4]", 0, 2, 4]
               },
               {
                 "label": "Key 5 Color",
                 "type": "color",
-                "content": ["id_matrix_05_color", 0, 8]
+                "content": ["id_matrix_color[5]", 0, 2, 5]
               },
               {
                 "label": "Key 6 Color",
                 "type": "color",
-                "content": ["id_matrix_06_color", 0, 9]
+                "content": ["id_matrix_color[6]", 0, 2, 6]
               },
               {
                 "label": "Key 7 Color",
                 "type": "color",
-                "content": ["id_matrix_07_color", 0, 10]
+                "content": ["id_matrix_color[7]", 0, 2, 7]
               },
               {
                 "label": "Key 8 Color",
                 "type": "color",
-                "content": ["id_matrix_08_color", 0, 11]
+                "content": ["id_matrix_color[8]", 0, 2, 8]
               },
               {
                 "label": "Key 9 Color",
                 "type": "color",
-                "content": ["id_matrix_09_color", 0, 12]
+                "content": ["id_matrix_color[9]", 0, 2, 9]
               },
               {
                 "label": "Key 10 Color",
                 "type": "color",
-                "content": ["id_matrix_10_color", 0, 13]
+                "content": ["id_matrix_color[10]", 0, 2, 10]
               },
               {
                 "label": "Key 11 Color",
                 "type": "color",
-                "content": ["id_matrix_11_color", 0, 14]
+                "content": ["id_matrix_color[11]", 0, 2, 11]
               },
               {
                 "label": "Key 12 Color",
                 "type": "color",
-                "content": ["id_matrix_12_color", 0, 15]
+                "content": ["id_matrix_color[12]", 0, 2, 12]
               }
             ]
           }

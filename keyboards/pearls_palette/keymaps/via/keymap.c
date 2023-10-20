@@ -11,21 +11,8 @@ typedef struct PACKED
 
 typedef struct
 {
-    HS layer_1_indicator_color;
-    HS layer_2_indicator_color;
-    HS layer_3_indicator_color;
-    HS matrix_01_color;
-    HS matrix_02_color;
-    HS matrix_03_color;
-    HS matrix_04_color;
-    HS matrix_05_color;
-    HS matrix_06_color;
-    HS matrix_07_color;
-    HS matrix_08_color;
-    HS matrix_09_color;
-    HS matrix_10_color;
-    HS matrix_11_color;
-    HS matrix_12_color;
+    HS layer_indicator_color[4];
+    HS matrix_color[12];
     uint8_t layer_indicator_brightness;
 } pearls_palette_lighting_config;
 
@@ -103,17 +90,8 @@ void eeconfig_init_user(void) {  // EEPROM is getting reset!
 }
 
 bool rgb_matrix_indicators_user(void) {
-    HSV hsv = {.h = 0, .s = 0, .v = light_config.layer_indicator_brightness };
-
     uint8_t layer = get_highest_layer(layer_state);
-
-    if (layer == 0) {
-        hsv.s = 0;
-    }
-    if (layer == 1) {
-        hsv.h = light_config.layer_1_indicator_color.h;
-        hsv.s = light_config.layer_1_indicator_color.s;
-    }
+    HSV hsv = {.h = light_config.layer_indicator_color[layer].h, .s = light_config.layer_indicator_color[layer].s, .v = light_config.layer_indicator_brightness };
     RGB rgb = hsv_to_rgb(hsv);
     rgb_matrix_set_color(0, rgb.r, rgb.g, rgb.b);
 

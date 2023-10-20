@@ -3,37 +3,37 @@
 
 #ifdef ENABLE_RGB_MATRIX_COLOR_CHIPS
 
-#ifndef MONO_BACKLIGHT_COLOR_1
-#define MONO_BACKLIGHT_COLOR_1 { .h = 0, .s = 255 }
-#endif
-
 #include "via.h" // uses EEPROM address, lighting value IDs
 #define RGB_LIGHT_CONFIG_EEPROM_ADDR (VIA_EEPROM_CUSTOM_CONFIG_ADDR)
 
-#define PALETTE_HSV_BLUE { .h = 170, .s = 255} // RGB #0d07ff
+#define PALETTE_HSV_WHITE { .h = 0, .s = 0 }
 #define PALETTE_HSV_RED { .h = 1, .s = 254} // RGB #ff0600
 #define PALETTE_HSV_ORANGE { .h = 13, .s = 252} // RGB #ff5603
 #define PALETTE_HSV_YELLOW { .h = 41, .s = 245} // RGB #fff60a
-#define PALETTE_HSV_GREEN { .h = 102, .s = 252} // RGB #03ff68
+#define PALETTE_HSV_GREEN { .h = 91, .s = 252} // RGB #03ff68
+#define PALETTE_HSV_TEAL { .h = 102, .s = 252} // RGB #03ff68
+#define PALETTE_HSV_BLUE { .h = 170, .s = 255} // RGB #0d07ff
 #define PALETTE_HSV_PURPLE { .h = 197, .s = 255} // RGB #a200ff
+#define PALETTE_HSV_PINK { .h = 227, .s = 226 } // RGB #ff12a9
 
 pearls_palette_lighting_config light_config = {
-    .layer_1_indicator_color = MONO_BACKLIGHT_COLOR_1,
-    .layer_2_indicator_color = MONO_BACKLIGHT_COLOR_1,
-    .layer_3_indicator_color = MONO_BACKLIGHT_COLOR_1,
-    .matrix_01_color = PALETTE_HSV_ORANGE,
-    .matrix_02_color = PALETTE_HSV_YELLOW,
-    .matrix_03_color = PALETTE_HSV_GREEN,
-    .matrix_04_color = PALETTE_HSV_RED,
-    .matrix_05_color = PALETTE_HSV_BLUE,
-    .matrix_06_color = PALETTE_HSV_PURPLE,
-    .matrix_07_color = PALETTE_HSV_RED,
-    .matrix_08_color = PALETTE_HSV_PURPLE,
-    .matrix_09_color = PALETTE_HSV_ORANGE,
-    .matrix_10_color = PALETTE_HSV_GREEN,
-    .matrix_11_color = PALETTE_HSV_BLUE,
-    .matrix_12_color = PALETTE_HSV_YELLOW,
-    .layer_indicator_brightness = 150,
+    .layer_indicator_color[0] = PALETTE_HSV_PINK,
+    .layer_indicator_color[1] = PALETTE_HSV_PURPLE,
+    .layer_indicator_color[2] = PALETTE_HSV_GREEN,
+    .layer_indicator_color[3] = PALETTE_HSV_WHITE,
+    .matrix_color[0] = PALETTE_HSV_ORANGE,
+    .matrix_color[1] = PALETTE_HSV_YELLOW,
+    .matrix_color[2] = PALETTE_HSV_TEAL,
+    .matrix_color[3] = PALETTE_HSV_RED,
+    .matrix_color[4] = PALETTE_HSV_BLUE,
+    .matrix_color[5] = PALETTE_HSV_PURPLE,
+    .matrix_color[6] = PALETTE_HSV_RED,
+    .matrix_color[7] = PALETTE_HSV_PURPLE,
+    .matrix_color[8] = PALETTE_HSV_ORANGE,
+    .matrix_color[9] = PALETTE_HSV_TEAL,
+    .matrix_color[10] = PALETTE_HSV_BLUE,
+    .matrix_color[11] = PALETTE_HSV_YELLOW,
+    .layer_indicator_brightness = 200,
 };
 
 void _set_color( HS *color, uint8_t *data )
@@ -54,79 +54,16 @@ void pearls_palette_lighting_config_set_value( uint8_t *data )
     uint8_t *value_data = &(data[1]);
     switch ( *value_id )
     {
-        case id_layer_1_indicator_color:
+        case id_layer_indicator_color:
         {
-            _set_color( &(light_config.layer_1_indicator_color), value_data );
+            uint8_t layer_index = value_data[0];
+            _set_color( &(light_config.layer_indicator_color[layer_index]), &(value_data[1]) );
             break;
         }
-        case id_layer_2_indicator_color:
+        case id_matrix_color:
         {
-            _set_color( &(light_config.layer_2_indicator_color), value_data );
-            break;
-        }
-        case id_layer_3_indicator_color:
-        {
-            _set_color( &(light_config.layer_3_indicator_color), value_data );
-            break;
-        }
-        case id_matrix_01_color:
-        {
-            _set_color( &(light_config.matrix_01_color), value_data );
-            break;
-        }
-        case id_matrix_02_color:
-        {
-            _set_color( &(light_config.matrix_02_color), value_data );
-            break;
-        }
-        case id_matrix_03_color:
-        {
-            _set_color( &(light_config.matrix_03_color), value_data );
-            break;
-        }
-        case id_matrix_04_color:
-        {
-            _set_color( &(light_config.matrix_04_color), value_data );
-            break;
-        }
-        case id_matrix_05_color:
-        {
-            _set_color( &(light_config.matrix_05_color), value_data );
-            break;
-        }
-        case id_matrix_06_color:
-        {
-            _set_color( &(light_config.matrix_06_color), value_data );
-            break;
-        }
-        case id_matrix_07_color:
-        {
-            _set_color( &(light_config.matrix_07_color), value_data );
-            break;
-        }
-        case id_matrix_08_color:
-        {
-            _set_color( &(light_config.matrix_08_color), value_data );
-            break;
-        }
-        case id_matrix_09_color:
-        {
-            _set_color( &(light_config.matrix_09_color), value_data );
-            break;
-        }
-        case id_matrix_10_color:
-        {
-            _set_color( &(light_config.matrix_10_color), value_data );
-            break;
-        }
-        case id_matrix_11_color:
-        {
-            _set_color( &(light_config.matrix_11_color), value_data );
-            break;
-        }
-        case id_matrix_12_color:
-        {
-            _set_color( &(light_config.matrix_12_color), value_data );
+            uint8_t led_position = value_data[0] - 1;
+            _set_color( &(light_config.matrix_color[led_position]), &(value_data[1]) );
             break;
         }
         case id_layer_indicator_brightness:
@@ -143,79 +80,17 @@ void pearls_palette_lighting_config_get_value( uint8_t *data )
     uint8_t *value_data = &(data[1]);
     switch ( *value_id )
     {
-        case id_layer_1_indicator_color:
+        case id_layer_indicator_color:
         {
-            _get_color( &(light_config.layer_1_indicator_color), value_data );
+            uint8_t layer_index = value_data[0];
+            _get_color( &(light_config.layer_indicator_color[layer_index]), &(value_data[1]) );
             break;
         }
-        case id_layer_2_indicator_color:
+        case id_matrix_color:
         {
-            _get_color( &(light_config.layer_2_indicator_color), value_data );
-            break;
-        }
-        case id_layer_3_indicator_color:
-        {
-            _get_color( &(light_config.layer_3_indicator_color), value_data );
-            break;
-        }
-        case id_matrix_01_color:
-        {
-            _get_color( &(light_config.matrix_01_color), value_data );
-            break;
-        }
-        case id_matrix_02_color:
-        {
-            _get_color( &(light_config.matrix_02_color), value_data );
-            break;
-        }
-        case id_matrix_03_color:
-        {
-            _get_color( &(light_config.matrix_03_color), value_data );
-            break;
-        }
-        case id_matrix_04_color:
-        {
-            _get_color( &(light_config.matrix_04_color), value_data );
-            break;
-        }
-        case id_matrix_05_color:
-        {
-            _get_color( &(light_config.matrix_05_color), value_data );
-            break;
-        }
-        case id_matrix_06_color:
-        {
-            _get_color( &(light_config.matrix_06_color), value_data );
-            break;
-        }
-        case id_matrix_07_color:
-        {
-            _get_color( &(light_config.matrix_07_color), value_data );
-            break;
-        }
-        case id_matrix_08_color:
-        {
-            _get_color( &(light_config.matrix_08_color), value_data );
-            break;
-        }
-        case id_matrix_09_color:
-        {
-            _get_color( &(light_config.matrix_09_color), value_data );
-            break;
-        }
-        case id_matrix_10_color:
-        {
-            _get_color( &(light_config.matrix_10_color), value_data );
-            break;
-        }
-        case id_matrix_11_color:
-        {
-            _get_color( &(light_config.matrix_11_color), value_data );
-            break;
-        }
-        case id_matrix_12_color:
-        {
-            _get_color( &(light_config.matrix_12_color), value_data );
+
+            uint8_t led_position = value_data[0] - 1;
+            _get_color( &(light_config.matrix_color[led_position]), &(value_data[1]) );
             break;
         }
         case id_layer_indicator_brightness:
@@ -260,7 +135,6 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
             }
             case id_custom_save:
             {
-                // *command_id = id_unhandled;
                 pearls_palette_lighting_config_save();
                 break;
             }
@@ -288,7 +162,6 @@ void via_init_kb(void)
         // come from construction of the backlight_config instance.
         pearls_palette_lighting_config_save();
     }
-
 }
 void matrix_init_kb(void)
 {
