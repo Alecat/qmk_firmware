@@ -9,11 +9,10 @@ typedef struct PACKED
     uint8_t s;
 } HS;
 
-// TODO can we store arrays in the eeprom for the matrix colours
 typedef struct
 {
-    HS layer_indicator_color[4];
     HS matrix_color[12];
+    HS layer_indicator_color[4];
     uint8_t layer_indicator_brightness;
 } pearls_palette_lighting_config;
 

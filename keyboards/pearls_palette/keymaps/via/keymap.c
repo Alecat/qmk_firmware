@@ -11,8 +11,8 @@ typedef struct PACKED
 
 typedef struct
 {
-    HS layer_indicator_color[4];
     HS matrix_color[12];
+    HS layer_indicator_color[4];
     uint8_t layer_indicator_brightness;
 } pearls_palette_lighting_config;
 
@@ -33,33 +33,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └───┴───┴───┴───┘
      */
     [0] = LAYOUT(
-        TO(1),   MO(2),   KC_VOLU, KC_VOLD, 
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,
-        KC_F5,   KC_F6,   KC_F7,   KC_F8,
-        KC_F9,   KC_F10,  KC_F11,  KC_F12
+        TO(1),  MO(3),  KC_LBRC,    KC_RBRC,
+        C(KC_X),C(KC_C),C(KC_V),    KC_LALT,
+        KC_B,   KC_V,   C(KC_S),    KC_LSFT,
+        KC_E,   KC_M,   C(KC_Z),    C(KC_Y)
     ),
     [1] = LAYOUT(
-        TO(0),   MO(2),   SGUI(KC_Z), LGUI(KC_Z), 
-        KC_LSFT,   RGB_MOD,   KC_F3,   KC_F4,
-        KC_LCTL,   KC_F6,   KC_F7,   KC_F8,
-        KC_LALT,   KC_F10,  LGUI(KC_Z),  SGUI(KC_Z)
+        TO(2),  MO(3),  KC_LBRC,    KC_RBRC,
+        G(KC_X),G(KC_C),G(KC_V),    KC_LALT,
+        KC_B,   KC_V,   G(KC_S),    KC_LSFT,
+        KC_E,   KC_M,   G(KC_Z),    LSG(KC_Z)
     ),
     [2] = LAYOUT(
-        KC_TRNS,   KC_TRNS,   RGB_VAI,     RGB_VAD,     
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,
-        KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS
+        TO(0),  MO(3),  MI_TRSD,    MI_TRSU,
+        MI_E,   MI_A,   MI_D1,      MI_G1,
+        MI_D,   MI_G,   MI_C1,      MI_F1,
+        MI_C,   MI_F,   MI_B,       MI_E1
+    ),
+    [3] = LAYOUT(
+        KC_ESC, KC_NO,  KC_VOLD,    KC_VOLU,
+        RGB_VAD,RGB_VAI,RGB_TOG,    KC_RALT,
+        KC_MUTE,KC_MPLY,KC_UP,      KC_RSFT,
+        KC_WWW_SEARCH, KC_LEFT, KC_DOWN, KC_RGHT
     )
 };
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [1] =  { ENCODER_CCW_CW(LGUI(KC_Z), SGUI(KC_Z)) },
-    [2] =  { ENCODER_CCW_CW(RGB_VAI, RGB_VAD) }
+    [0] =  { ENCODER_CCW_CW(KC_LBRC,    KC_RBRC) },
+    [1] =  { ENCODER_CCW_CW(KC_LBRC,    KC_RBRC) },
+    [2] =  { ENCODER_CCW_CW(MI_TRSD,    MI_TRSU) },
+    [3] =  { ENCODER_CCW_CW(KC_VOLD,    KC_VOLU) }
 };
 #else
-bool encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_kb(uint8_t index, bool clockwise) {
     // if (index == 0) { /* First (only) encoder */
     if (encoder_pressed) {
         if (clockwise) {
@@ -77,16 +84,26 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code16(dynamic_keymap_get_keycode(layer, 0, 3));
         }
     }
-    // }
     return false;
 }
 #endif
 
+
+// Assume the keyboard has already been initialised
+bool has_init = true;
 void eeconfig_init_user(void) {  // EEPROM is getting reset!
-#ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_enable();
-    rgb_matrix_mode(RGB_MATRIX_CUSTOM_COLOR_CHIPS);
-#endif
+    // Workaround since VIA compatibility seems to cause eeprom to be ignored
+    // Details here, but we just set a flag instead of starting a timer
+    // https://www.reddit.com/r/olkb/comments/9ny0jp/qmk_rgb_settings_done_in_matrix_init_user_are/
+    has_init = false;
+}
+
+void keyboard_post_init_user(void) {
+    if (!has_init) {
+        rgb_matrix_enable();
+        rgb_matrix_mode(RGB_MATRIX_CUSTOM_COLOR_CHIPS);
+    }
+    rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, rgb_matrix_config.hsv.v);
 }
 
 bool rgb_matrix_indicators_user(void) {

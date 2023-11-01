@@ -17,10 +17,6 @@
 #define PALETTE_HSV_PINK { .h = 227, .s = 226 } // RGB #ff12a9
 
 pearls_palette_lighting_config light_config = {
-    .layer_indicator_color[0] = PALETTE_HSV_PINK,
-    .layer_indicator_color[1] = PALETTE_HSV_PURPLE,
-    .layer_indicator_color[2] = PALETTE_HSV_GREEN,
-    .layer_indicator_color[3] = PALETTE_HSV_WHITE,
     .matrix_color[0] = PALETTE_HSV_ORANGE,
     .matrix_color[1] = PALETTE_HSV_YELLOW,
     .matrix_color[2] = PALETTE_HSV_TEAL,
@@ -33,6 +29,10 @@ pearls_palette_lighting_config light_config = {
     .matrix_color[9] = PALETTE_HSV_TEAL,
     .matrix_color[10] = PALETTE_HSV_BLUE,
     .matrix_color[11] = PALETTE_HSV_YELLOW,
+    .layer_indicator_color[0] = PALETTE_HSV_PINK,
+    .layer_indicator_color[1] = PALETTE_HSV_PURPLE,
+    .layer_indicator_color[2] = PALETTE_HSV_GREEN,
+    .layer_indicator_color[3] = PALETTE_HSV_WHITE,
     .layer_indicator_brightness = 200,
 };
 

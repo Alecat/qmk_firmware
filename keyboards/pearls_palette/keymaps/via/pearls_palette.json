@@ -1,98 +1,158 @@
 {
-  "name": "Pearl's Palette",
-  "vendorId": "0xA13C",
-  "productId": "0x0001",
-  "matrix": {"rows": 4, "cols": 4},
-  "menus": [
-    {
-        "label": "Lighting",
-        "content": [
-          {
-            "label": "Backlight",
+    "name": "Pearl's Palette",
+    "vendorId": "0xA13C",
+    "productId": "0x0001",
+    "matrix": { "rows": 4, "cols": 4 },
+    "menus": [
+        {
+            "label": "Lighting",
             "content": [
-              {
-                "label": "Layer Indicator Brightness",
-                "type": "range",
-                "options": [0, 255],
-                "content": ["id_layer_indicator_brightness", 0, 3]
-              },
-              {
-                "label": "Brightness",
-                "type": "range",
-                "options": [0, 255],
-                "content": ["id_qmk_rgb_matrix_brightness", 3, 1]
-              },
-              {
-                "label": "Key 1 Color",
-                "type": "color",
-                "content": ["id_matrix_color[1]", 0, 2, 1]
-              },
-              {
-                "label": "Key 2 Color",
-                "type": "color",
-                "content": ["id_matrix_color[2]", 0, 2, 2]
-              },
-              {
-                "label": "Key 3 Color",
-                "type": "color",
-                "content": ["id_matrix_color[3]", 0, 2, 3]
-              },
-              {
-                "label": "Key 4 Color",
-                "type": "color",
-                "content": ["id_matrix_color[4]", 0, 2, 4]
-              },
-              {
-                "label": "Key 5 Color",
-                "type": "color",
-                "content": ["id_matrix_color[5]", 0, 2, 5]
-              },
-              {
-                "label": "Key 6 Color",
-                "type": "color",
-                "content": ["id_matrix_color[6]", 0, 2, 6]
-              },
-              {
-                "label": "Key 7 Color",
-                "type": "color",
-                "content": ["id_matrix_color[7]", 0, 2, 7]
-              },
-              {
-                "label": "Key 8 Color",
-                "type": "color",
-                "content": ["id_matrix_color[8]", 0, 2, 8]
-              },
-              {
-                "label": "Key 9 Color",
-                "type": "color",
-                "content": ["id_matrix_color[9]", 0, 2, 9]
-              },
-              {
-                "label": "Key 10 Color",
-                "type": "color",
-                "content": ["id_matrix_color[10]", 0, 2, 10]
-              },
-              {
-                "label": "Key 11 Color",
-                "type": "color",
-                "content": ["id_matrix_color[11]", 0, 2, 11]
-              },
-              {
-                "label": "Key 12 Color",
-                "type": "color",
-                "content": ["id_matrix_color[12]", 0, 2, 12]
-              }
+                {
+                    "label": "Layer Indicator",
+                    "content": [
+                        {
+                            "label": "Brightness",
+                            "type": "range",
+                            "options": [0, 255],
+                            "content": ["id_layer_indicator_brightness", 0, 3]
+                        },
+                        {
+                            "label": "Layer 0 Color",
+                            "type": "color",
+                            "content": ["id_layer_indicator_color[0]", 0, 2, 0]
+                        },
+                        {
+                            "label": "Layer 1 Color",
+                            "type": "color",
+                            "content": ["id_layer_indicator_color[1]", 0, 2, 1]
+                        },
+                        {
+                            "label": "Layer 2 Color",
+                            "type": "color",
+                            "content": ["id_layer_indicator_color[2]", 0, 2, 2]
+                        },
+                        {
+                            "label": "Layer 3 Color",
+                            "type": "color",
+                            "content": ["id_layer_indicator_color[3]", 0, 2, 3]
+                        }
+                    ]
+                },
+                {
+                    "label": "Key Colours",
+                    "content": [
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} != 0",
+                            "label": "Brightness",
+                            "type": "range",
+                            "options": [0, 255],
+                            "content": ["id_qmk_rgb_matrix_brightness", 3, 1]
+                        },
+                        {
+                            "label": "Backlight Effect",
+                            "type": "dropdown",
+                            "content": ["id_qmk_rgb_matrix_effect", 3, 2],
+                            "options": [
+                                ["Off (turns off layer indicator)", 0],
+                                ["Solid Colour", 1],
+                                ["Highlight Presses", 2],
+                                ["Palette", 3]
+                            ]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 1 || {id_qmk_rgb_matrix_effect} == 2",
+                            "label": "Colour",
+                            "type": "color",
+                            "content": ["id_qmk_rgb_matrix_color", 3, 4]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 1 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[1]", 0, 1, 1]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 2 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[2]", 0, 1, 2]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 3 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[3]", 0, 1, 3]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 4 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[4]", 0, 1, 4]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 5 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[5]", 0, 1, 5]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 6 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[6]", 0, 1, 6]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 7 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[7]", 0, 1, 7]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 8 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[8]", 0, 1, 8]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 9 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[9]", 0, 1, 9]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 10 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[10]", 0, 1, 10]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 11 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[11]", 0, 1, 11]
+                        },
+                        {
+                            "showIf": "{id_qmk_rgb_matrix_effect} == 3",
+                            "label": "Key 12 Color",
+                            "type": "color",
+                            "content": ["id_matrix_color[12]", 0, 1, 12]
+                        }
+                    ]
+                }
             ]
-          }
+        }
+    ],
+    "layouts": {
+        "keymap": [
+            [
+                { "g": true, "p": "FLAT" },
+                "0,0",
+                { "g": false },
+                "0,1\n\n\n\n\n\n\n\n\ne0"
+            ],
+            [{ "g": true, "p": "CHICKLET" }, "1,0", "1,1", "1,2", "1,3"],
+            ["2,0", "2,1", "2,2", "2,3"],
+            ["3,0", "3,1", "3,2", "3,3"]
         ]
-      }
-  ],
-  "layouts": {
-    "keymap": [
-      ["0,0", "0,1", "0,2", "0,3"],
-      ["1,0", "1,1", "1,2", "1,3"],
-      ["2,0", "2,1", "2,2", "2,3"],
-      ["3,0", "3,1", "3,2", "3,3"]
-    ]
-  }
+    }
 }
