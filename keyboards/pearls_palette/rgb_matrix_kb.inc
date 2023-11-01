@@ -1,3 +1,6 @@
+// Copyright 2023 Alethea Lim (@Alecat)
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 #ifdef ENABLE_RGB_MATRIX_COLOR_CHIPS
 RGB_MATRIX_EFFECT(COLOR_CHIPS)
 

@@ -1,12 +1,12 @@
 # pearls_palette
 
-![pearls_palette](imgur.com image replace me!)
+![Pearl's Palette](https://ale.chenonetta.com/blog/wp-content/uploads/2023/11/IMG_5556-scaled.jpg)
 
-*A short description of the keyboard/project*
+*A 4x3 macro pad with rotary encoder. Per key backlighting designed for maximum candy-colour appearance.*
 
 * Keyboard Maintainer: [Alethea Lim](https://github.com/Alecat)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Hardware Supported: Pro Micro
+* Hardware Availability: None Yet
 
 Make example for this keyboard (after setting up your build environment):
 

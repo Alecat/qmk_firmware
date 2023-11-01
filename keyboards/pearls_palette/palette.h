@@ -1,3 +1,6 @@
+// Copyright 2023 Alethea Lim (@Alecat)
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 #pragma once
 
 enum via_light_config {
