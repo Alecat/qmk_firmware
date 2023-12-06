@@ -22,6 +22,7 @@ typedef struct
 extern pearls_palette_lighting_config light_config;
 
 // Track keypresses as they happen - this is updated in process_record_user
+// TODO: can keypresses be detected without local tracking?
 bool led_keys_pressed[13] = {};
 
 static bool COLOR_CHIPS(effect_params_t* params) {

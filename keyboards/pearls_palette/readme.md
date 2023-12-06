@@ -6,7 +6,7 @@
 
 * Keyboard Maintainer: [Alethea Lim](https://github.com/Alecat)
 * Hardware Supported: Pro Micro
-* Hardware Availability: None Yet
+* Hardware Availability: Private sales at local markets
 
 Make example for this keyboard (after setting up your build environment):
 

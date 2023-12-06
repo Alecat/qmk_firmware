@@ -33,14 +33,3 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [1] =  { ENCODER_CCW_CW(LGUI(KC_Z), SGUI(KC_Z)) }
 };
-
-bool rgb_matrix_indicators_user(void) {
-    uint8_t layer = get_highest_layer(layer_state);
-    if (layer == 0) {
-        rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
-    }
-    if (layer == 1) {
-        rgb_matrix_set_color(0, 0xFF, 0x00, 0xFF);
-    }
-    return false;
-}

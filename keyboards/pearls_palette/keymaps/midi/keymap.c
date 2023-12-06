@@ -34,36 +34,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [0] = LAYOUT(
         TO(1),  MO(3),  KC_NO,    KC_NO,
-        C(KC_X),C(KC_C),C(KC_V),    KC_LALT,
-        KC_B,   KC_V,   C(KC_S),    KC_LSFT,
-        KC_E,   KC_M,   C(KC_Z),    C(KC_Y)
+        MI_C,   MI_Cs,   MI_D,      MI_Ds,
+        MI_E,   MI_F,   MI_Fs,      MI_G,
+        MI_Gs,   MI_A,   MI_As,       MI_B
     ),
     [1] = LAYOUT(
         TO(2),  MO(3),  KC_NO,    KC_NO,
-        G(KC_X),G(KC_C),G(KC_V),    KC_LALT,
-        KC_B,   KC_V,   G(KC_S),    KC_LSFT,
-        KC_E,   KC_M,   G(KC_Z),    LSG(KC_Z)
+        MI_C,   MI_Cs,   MI_D,      MI_Ds,
+        MI_E,   MI_F,   MI_Fs,      MI_G,
+        MI_Gs,   MI_A,   MI_As,       MI_B
     ),
     [2] = LAYOUT(
         TO(0),  MO(3),  KC_NO,    KC_NO,
-        MI_E,   MI_A,   MI_D1,      MI_G1,
-        MI_D,   MI_G,   MI_C1,      MI_F1,
-        MI_C,   MI_F,   MI_B,       MI_E1
+        MI_C,   MI_Cs,   MI_D,      MI_Ds,
+        MI_E,   MI_F,   MI_Fs,      MI_G,
+        MI_Gs,   MI_A,   MI_As,       MI_B
     ),
     [3] = LAYOUT(
-        KC_ESC, KC_NO,  KC_NO,    KC_NO,
-        RGB_VAD,RGB_VAI,RGB_TOG,    KC_RALT,
-        KC_MUTE,KC_MPLY,KC_UP,      KC_RSFT,
-        KC_WWW_SEARCH, KC_LEFT, KC_DOWN, KC_RGHT
+        TO(0),  MO(3),  KC_NO,    KC_NO,
+        KC_SPACE,   C(KC_SPACE),   KC_E,      KC_T,
+        QK_MIDI_OCTAVE_UP,   QK_MIDI_TRANSPOSE_0,   RGB_VAI,      KC_D,
+        QK_MIDI_OCTAVE_DOWN,   QK_MIDI_OCTAVE_2,   RGB_VAD,       KC_Z
     )
 };
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] =  { ENCODER_CCW_CW(KC_LBRC, KC_RBRC) },
-    [1] =  { ENCODER_CCW_CW(KC_LBRC, KC_RBRC) },
-    [2] =  { ENCODER_CCW_CW(MI_TRSD, MI_TRSU) },
-    [3] =  { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) }
+    [0] =  { ENCODER_CCW_CW(MI_TRSD, MI_TRSU) },
+    [1] =  { ENCODER_CCW_CW(QK_MIDI_OCTAVE_DOWN, QK_MIDI_OCTAVE_UP) },
+    [2] =  { ENCODER_CCW_CW(MI_BNDD, MI_BNDU) },
+    [3] =  { ENCODER_CCW_CW(KC_KP_SLASH, KC_KP_ASTERISK) }
 };
 #else
 bool encoder_update_kb(uint8_t index, bool clockwise) {
