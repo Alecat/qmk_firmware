@@ -52,7 +52,7 @@
     "url": "",
     "usb": {
         "device_version": "1.0.0",
-        "pid": "0x0001",
+        "pid": "0x0002",
         "vid": "0xA13C"
     },
     "ws2812": {

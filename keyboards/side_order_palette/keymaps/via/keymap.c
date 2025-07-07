@@ -45,10 +45,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_E,   KC_M,   G(KC_Z),    LSG(KC_Z)
     ),
     [2] = LAYOUT(
-        TO(0),  MO(3),  KC_NO,    KC_NO,
-        MI_E,   MI_A,   MI_D1,      MI_G1,
-        MI_D,   MI_G,   MI_C1,      MI_F1,
-        MI_C,   MI_F,   MI_B,       MI_E1
+        TO(0),   MO(3),  KC_NO,  KC_NO,
+        KC_BSPC, KC_P7,  KC_P8,  KC_P9,
+        KC_PDOT, KC_P4,  KC_P5,  KC_P6,
+        KC_P0,   KC_P1,  KC_P2,  KC_P3
     ),
     [3] = LAYOUT(
         KC_ESC, KC_NO,  KC_NO,    KC_NO,
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] =  { ENCODER_CCW_CW(KC_LBRC, KC_RBRC) },
     [1] =  { ENCODER_CCW_CW(KC_LBRC, KC_RBRC) },
-    [2] =  { ENCODER_CCW_CW(MI_TRSD, MI_TRSU) },
+    [2] =  { ENCODER_CCW_CW(KC_PMNS, KC_PPLS) },
     [3] =  { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) }
 };
 #else
